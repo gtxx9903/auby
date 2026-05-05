@@ -26,7 +26,6 @@ jobs:
       - name: Run Govnython Scripts
         run: |
           brew install keystone
-          export DYLD_LIBRARY_PATH="$(brew --prefix keystone)/lib:$DYLD_LIBRARY_PATH"
           git clone https://github.com/CallocGD/PyBroma.git --recursive
           cd PyBroma
           sed -i -e 's/--std:c++17/--std=c++17/g' setup.py
@@ -36,6 +35,7 @@ jobs:
           python3 -m venv hueta
           source hueta/bin/activate
           python3 -m pip install setuptools wheel cython keystone-engine scikit-build cmake
+          cp "$(brew --prefix keystone)/lib/libkeystone.dylib" "hueta/lib/python3.12/site-packages/keystone/libkeystone.dylib"
           wget https://pypi.python.org/packages/source/c/capstone/capstone-5.0.1.tar.gz
           tar -xf capstone-5.0.1.tar.gz
           cd capstone-5.0.1
