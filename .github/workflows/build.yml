@@ -29,7 +29,7 @@ jobs:
           cd PyBroma
           sed -i -e 's/--std:c++17/--std=c++17/g' setup.py
           sed -i -e 's/\/O2/-O2/g' setup.py
-          export LDFLAGS="-L$(brew --prefix openssl)/lib"
+          export LDFLAGS="-L$(brew --prefix openssl)/lib -undefined dynamic_lookup"
           export CPPFLAGS="-I$(brew --prefix openssl)/include"
           python3 -m venv hueta
           source hueta/bin/activate
