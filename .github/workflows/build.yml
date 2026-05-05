@@ -25,6 +25,7 @@ jobs:
 
       - name: Run Govnython Scripts
         run: |
+          brew install keystone
           git clone https://github.com/CallocGD/PyBroma.git --recursive
           cd PyBroma
           sed -i -e 's/--std:c++17/--std=c++17/g' setup.py
